@@ -133,8 +133,9 @@ class CurlFormatter
 
         if ($contents) {
             // clean input of null bytes
-             $contents = str_replace(chr(0), '', $contents);
-            $this->addOption('d', escapeshellarg($contents));
+            $contents = str_replace(chr(0), '', $contents);
+            $contents = str_replace('\'', '\\\'', $contents);
+            $this->addOption('d', '\''.$contents.'\'');
         }
 
         //if get request has data Add G otherwise curl will make a post request
